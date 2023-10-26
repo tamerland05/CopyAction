@@ -19,11 +19,10 @@ public class CopyAction extends AnAction {
 
         if (selectedText != null) {
             JFileChooser fileChooser = new JFileChooser("copy_code.txt");
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int ret = fileChooser.showDialog(null, "Open Directory");
             String path = String.valueOf(fileChooser.getSelectedFile());
 
-            try(FileWriter writer = new FileWriter(path+"\\copy_code.txt", false)) {
+            try(FileWriter writer = new FileWriter(path, false)) {
                 writer.write(selectedText);
 
                 writer.flush();
