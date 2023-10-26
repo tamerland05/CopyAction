@@ -4,7 +4,11 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.ui.Messages;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.io.*;
+
 public class CopyAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent event) {
@@ -14,14 +18,16 @@ public class CopyAction extends AnAction {
         String selectedText = editor.getSelectionModel().getSelectedText();
 
         if (selectedText != null) {
-            try(FileWriter writer = new FileWriter("C:\\C++\\copy_code.txt", false))
-            {
+            JFileChooser fileChooser = new JFileChooser("copy_code.txt");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int ret = fileChooser.showDialog(null, "Open Directory");
+            String path = String.valueOf(fileChooser.getSelectedFile());
+
+            try(FileWriter writer = new FileWriter(path+"\\copy_code.txt", false)) {
                 writer.write(selectedText);
 
                 writer.flush();
-            }
-            catch(IOException ex){
-
+            } catch(IOException ex){
                 System.out.println(ex.getMessage());
             }
         } else {
@@ -34,3 +40,4 @@ public class CopyAction extends AnAction {
         return false;
     }
 }
+
