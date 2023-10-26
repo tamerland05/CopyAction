@@ -1,0 +1,23 @@
+<idea-plugin>
+    <name>Display Name Here</name>
+    <vendor email="timurbik3110@mail.ru">tamerland05</vendor>
+
+    <description><![CDATA[
+    Copy any selected text in the editor into .txt file with shortcut ctrl BACK_SLASH + ctrl C" .
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="TweetAction" class="CopyAction" text="Copy Action" description="Copy the selection into file">
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl BACK_SLASH" second-keystroke="ctrl C"/>
+        </action>
+    </actions>
+</idea-plugin>
